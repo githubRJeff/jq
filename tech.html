@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>叫我动画特效</title>
+<script type="text/javascript" src="jquery-2.2.0.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <!-- <h4>我喜欢吃的水果</h4>
+    <ul>
+ 	    <li>苹果</li>
+        <li>甘桔</li>
+        <li>梨</li>
+    </ul> -->
+
+ <!--  <h3>toggle()方法的动画切换效果</h3>
+        <div>
+            <h4>
+                   <span class="fl">我喜欢吃的水果</span>
+                   <span class="fr" id="spnTip">显示</span>
+                </h4>
+                <ul>
+                    <li>苹果</li>
+                    <li>甘桔</li>
+                    <li>梨</li>
+                </ul>
+        </div> -->
+<!--  <span class="red"></span><span class="orange"></span><span class="blue"></span>
+<input id="hidval" type="hidden" value="0"/>
+ -->
+
+<span></span>
+<div id="tip"></div>
+<input id="btnStop" type="button" value="停止" />
+<script type="text/javascript">
+//animate方法制作移动效果
+//在移动位置之前，必须将被移元素的“position”属性值设为“absolute”或“relative”，否则移动不了
+//stop指令是用于终止动画效果的执行
+//delay用于延迟加载下一个动画的执行
+$(function(){
+   // $("#btnStop").bind("click",function(){
+   //      $("span").delay(1000);
+        // $("span").stop();
+        // $("#tip").html("Execution stopped!");
+   //  });
+    $("span").animate({
+        left:"+=100px"
+      },1000,function(){
+          $(this).animate({
+            width:"+=30px",
+            height:"+=30px"
+          },1000,function(){
+            $("#tip").html("Executed!");
+          })
+        
+    });
+   
+});
+
+//animate()方法制作简单的正方形由无到有放大的动画效果
+// $(function(){
+//     $("span").animate({
+//         width:"80px",
+//         height:"80px"
+//     },
+//     1000,function(){
+//         $("#tip").html("Executed!");
+//     });
+// });
+
+
+//fadeTo()方法设置透明度(从原有的颜色改变透明度，淡入淡出效果)
+// $(function(){
+//     $("span").each(function(index){
+//         switch (index){
+//             case 0:
+//                 $(this).fadeTo(1000,0.2);
+//                 break;
+//             case 1:
+//                 $(this).fadeTo(1000,0.4);
+//                 break;
+//             case 2:
+//                 $(this).fadeTo(1000,0.6);
+//                 break;
+//         }
+//     })
+// });
+//淡入淡出效果
+// $(function () {
+//     $("h4").bind("click", function () {
+//         if ($("#hidval").val() == 0) {
+//             $("ul").fadeOut(1000,function() {
+//                 $("#hidval").val(1);
+//             })
+//         } else {
+//             $("ul").fadeIn(1000,function() {
+//                 $("#hidval").val(0);
+//             })
+//         }
+//     })
+// });
+
+//滑动与淡入淡出有区别，滑动改变元素的高度，淡入淡出改变元素的透明度
+// $(function(){
+//     $("h4").bind("click",function(){
+//         if ($("#hidval").val() == 0) {
+//             $("ul").slideUp(100,function(){
+//                 $("#hidval").val(1);
+//             })    
+//         }else{
+//             $("ul").slideDown(100,function(){
+//                 $("#hidval").val(0);
+//             })
+//         }
+//     })
+// });
+//以上的代码可以替换成如下，利用slideToggle方法替换slideUp和slideDown
+// $(function () {
+//     var $spn = $("#spnTip");
+//     $("h4").bind("click", function () {
+//         $("ul").slideToggle(200,function(){
+//         $spn.html() == "向下滑" ? $spn.html("向上滑") : $spn.html("向下滑");
+//         })
+//     })
+// });
+
+
+ // $(function () {
+ //        var $spn = $("#spnTip");
+ //        $("h4").bind("click", function () {
+ //        $("ul").toggle(200,function(){  //设置出现或者隐藏的时间为200毫秒
+ //        $spn.html() == "隐藏" ? $spn.html("显示") : $spn.html("隐藏");
+ //                })
+ //        }); 
+ // });
+
+//show或者hide，第一个参数表示显示或者隐藏的速度，可以是fast，slow，normal，第二个参数表示所带的函数
+ // $(function () {
+ //    $("h4").bind("click", function () {
+ //    	if ($("#hidval").val() == 0) {
+ //            $("ul").show("fast");
+ //            $("#hidval").val(1);
+ //        } else {
+ //            $("ul").hide("slow");
+ //            $("#hidval").val(0);
+ //        }
+ //    });
+ //  });
+ //跟下面的代码结果一样
+  // $(function () {
+  //   $("h4").bind("click", function () {
+  //   	if ($("#hidval").val() == 0) {
+  //           $("ul").show("fast",function(){
+  //          		 $("#hidval").val(1); 	
+  //           });
+           
+  //       } else {
+  //           $("ul").hide("fast",function(){
+  //           	$("#hidval").val(0);	
+  //           });
+            
+  //       }
+  //   });
+  // });
+
+
+</script>
+
+</body>
+</html>

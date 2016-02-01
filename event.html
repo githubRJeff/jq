@@ -1,0 +1,111 @@
+<html>
+<head><title>This is event</title>
+<script type="text/javascript" src="jquery-2.2.0.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="tip"></div><br/>
+
+<div id="hover">叫我小土豪</div><br/>
+<input id="btntest" type="button" value="点击或移出就不可用了" /><br/>
+<div id="one">一次一次一次</div><br/>
+
+<input type="text" value="请输入你的名字"><br/><br/>
+
+<input id="txtest" type="text" value="" /><br/>
+<div id="warning"></div><br/>
+
+<select id="seltest">
+    <option value="葡萄">葡萄</option>
+    <option value="苹果">苹果</option>
+    <option value="荔枝">荔枝</option>
+    <option value="香焦">香焦</option>
+</select>
+
+</body>
+<script type="text/javascript">
+	//在页面的DOM结构加载后便触发，ready可以写多个
+	//类似于onLoad()事件，但onLoad必须在页面全部元素加载成功才触发
+	//$(document).ready(function(){}) 等价于 $(function(){});
+	$(document).ready(function(){
+		$("#tip").html("I'm loaded");
+	});
+
+	//toggle方法可以在click事件中绑定多个函数，也可以实现元素的隐藏和切换
+	 // $(function(){
+  //           $("#btntest").toggle(
+  //                   function(){
+  //                       $("div").hide();
+  //                   },
+  //                   function(){
+  //                       $("div").show();
+  //                   }
+  //               )
+            
+  //       });
+
+	//(从jq1.9开始不再用这个方法)live用法和bind类似，不过live还可以绑定动态元素
+	 $(function () {
+            $("#btntest2").live("click", function () {
+                $(this).attr("disabled", "true");
+            })
+            $("body").append("<input id='btntest2' type='button' value='点击或移出就不可用了' />");
+      });
+	
+	//bind方法绑定元素，只需要知道被绑定的元素名(#btntest)，绑定的事件名称(onclick mouseout)，事件中执行的函数内容，解绑则用unbind
+	//click是单击事件，dblclick是双击事件
+	$(function(){
+		$("#btntest").bind("click mouseout",function(){
+			$(this).attr("disabled","true");
+		})
+	});
+
+	//change用于当一个值发生变化时，就会触发该事件，如在下拉框的时候就会改变
+	$(function(){
+		$("select").bind("change",function(){
+			if ($(this).val() == "苹果") {
+				$(this).css("background-color","red");
+			}else{
+				$(this).css("background-color","green");
+			}
+			})
+	});
+	//focus与blur事件，focus在获取焦点时触发，blur在丢失焦点时触发(如这里的焦点是#txtest)
+	 $(function () {
+            $("#txtest").bind("focus", function () {
+                    $("#warning").html("请输入您的姓名！");
+                })
+            $("#txtest").bind("blur", function () {
+                if ($(this).val().length == 0)
+                    $("#warning").html("你的名称不能为空！");
+            })
+      });
+
+	//页面加载时手动触发文本框的select事件，进入页面后默认选中input的值	
+	$(function(){
+		$("input").trigger("select");
+	});
+	
+	//使用one方法，指定的元素只能被点击一次
+	$(function () {
+                var intI = 0;
+                $("#one").one("click", function () {
+                    intI++;
+                    $(this).css("font-size", intI + "px");
+                })
+            });
+	
+	//hover方法，在鼠标移入移出指定元素上的时候会触发响应函数
+	$(function(){
+		$("#hover").hover(
+			function(){
+				$(this).addClass("orange");
+			},
+			function(){
+				$(this).removeClass("orange");
+			}
+		);
+	});
+
+</script>
+</html>

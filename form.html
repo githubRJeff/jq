@@ -1,0 +1,61 @@
+<html>
+<head><title>表单选择器</title>
+<script type="text/javascript" src="jquery-2.2.0.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<form id="formTest" action="#">
+
+<input type="text"><br>
+
+<select>
+	<option>Option</option>
+</select><br>
+<button>button</button><br>
+
+<textarea rows="3" cols="8"></textarea><br>
+
+<a href="www.baidu.com">百度一下</a><br>
+
+<div id="content" class="red blue">Cool:</div>
+<div id="html"></div>
+<div id="text"></div>
+<script type="text/javascript">
+	$("#formTest :input").addClass("bg_blue");
+	//注意这里的input表单选择器的冒号前面是有空格的
+	// :text表单文本选择器, :password表单密码选择器, :radio单选按钮选择器, :checkbox复选框选择器
+	// input:submit提交按钮选择器, :image图像域选择器 :button表单按钮选择器, :checked选中状态选择器
+	// :selected选中状态选择器
+	
+	//获取href的值，或者进行赋值
+	$("a").attr("href","www.sina.com");
+	var $html = "<b>酷，我又变壮了</b>";	
+
+	$("#html").html($html);		//获取元素的html内容，包括其标签元素
+	$("#text").text($html);		//获取元素的所有内容，并且不进行转化
+
+	$("#content").css({"background-color":"red","color":"#fff"});	//直接设置css样式
+	$("#content").removeAttr("class");		//移除class属性
+	$("#content").removeClass("div");		//移除class属性，名为div的样式
+	$("#content").append("<div id='sad'>这是追加的内容</div>");	//追加内容，并且会自动转化标签
+
+	var $html = "<span class='red'>This is red</span>";
+	$($html).appendTo("div");		//把$html追加到div之中
+	$("span").after($html);		//在span后面/前面加上after/before中的内容
+	$("body").append($("span").clone());	//在body末尾追加复制span的内容
+	$($html).replaceAll("span");	//替换掉所有span标签的内容为$html的内容
+	$("span").replaceWith($html);	//同上
+	$(".red").wrapInner("<b>");		//包裹元素中的内容
+	$(".red").wrap("<div></div>");		//包裹元素本身	
+	
+	$("span").each(function(index){
+		if (index == 1) {
+			$(this).attr("class","red");
+		}
+	});
+	//遍历指定元素，通过回调函数返回遍历元素的序列号index，从0开始
+
+	$("span").remove(".red");		//删除span中class为red的元素(包括子元素)
+	$("span").empty();		//删除span中的所有子元素，无法指定
+</script>
+</form>
+</html>

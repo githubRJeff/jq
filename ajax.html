@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>酿我加载ajax应用</title>
+	<link rel="stylesheet" href="style2.css">
+	<script type="text/javascript" src="jquery-2.2.0.js"></script>
+</head>
+
+<body>
+<!-- <div id="divtest">
+    <span class="fl">My favorite fruits</span> 
+    <span class="fr">
+		<input id="btnShow" type="button" value="加载" />
+    </span>
+    <ul></ul>
+</div> -->
+<div id="divtest">
+    <div class="title">
+        <span class="fl">我的个人资料</span> 
+        <span class="fr">
+            <input id="btnAction" type="button" value="序列化" />
+        </span>
+    </div>
+    <form action="">
+        <ul>
+            <li>姓名：<input name="Text1" type="text" size="12" /></li>
+            <li>
+                <select name="Select1">
+                <option value="0">男</option>
+                <option value="1">女</option>
+                </select>
+            </li>
+            <li><input name="Checkbox1" type="checkbox" />资料是否可见 
+            </li>
+            <li id="litest"></li>
+        </ul>
+    </form>
+</div>
+<script type="text/javascript">
+
+$(function () {
+    $("#btnAction").bind("click", function() {
+        $("#litest").html($("form").serialize());
+    })
+})
+
+// getScript方法异步加载并执行js文件
+
+$(function(){
+	$("#btnShow").bind("click",function(){
+		$.getScript("sport_f.js",function(){
+			$(this).attr("disabled","true");
+		});
+	})
+});
+
+//getJSON方法异步加载json格式数据
+
+// $(function(){
+// 	$("#btnShow").bind("click",function(){
+// 		$.getJSON("sport.json",function(data){
+// 			$(this).attr("disabled","true");
+// 			$.each(data,function(index,favor){
+// 				if (index == 3) 
+// 					$("ul").append("<li>"+favor["name"]+"</li>");
+// 			});
+// 		});
+// 	})
+// });
+
+
+//load方法进行调用，但是ajax应用中，由于安全问题，浏览器默认不支持跨域调用
+
+// $(function () {
+// 		$("ul")
+// 		.html("<img src='images/loading.gif'>")
+// 		.load("fruit.html",function(){
+// 		$(this).attr("disabled","true");
+// 		});
+// 	})
+// });
+</script>
+</body>
+
+</html>
